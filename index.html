@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Roulette - Spin Your Luck!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎡 Interactive Roulette</h1>
+            <p class="subtitle">Customize, spin, and win!</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <button class="panel-toggle" id="panelToggle">⚙️ Settings</button>
+                
+                <div class="panel-content">
+                    <h2>Control Panel</h2>
+
+                    <!-- Add Item Section -->
+                    <div class="section">
+                        <h3>➕ Add New Item</h3>
+                        <div class="input-group">
+                            <input type="text" id="itemName" placeholder="Item name" maxlength="15">
+                            <input type="color" id="itemColor" value="#FF6B6B">
+                            <input type="number" id="itemWeight" placeholder="Probability" min="1" max="100" value="1">
+                            <button onclick="addItem()" class="btn-add">Add</button>
+                        </div>
+                    </div>
+
+                    <!-- Items List Section -->
+                    <div class="section">
+                        <h3>📋 Items</h3>
+                        <div id="itemsList" class="items-list"></div>
+                    </div>
+
+                    <!-- Speed Control -->
+                    <div class="section">
+                        <h3>⚡ Spin Speed</h3>
+                        <div class="slider-group">
+                            <input type="range" id="speedSlider" min="5" max="30" value="15" class="slider">
+                            <span id="speedValue">15</span>
+                        </div>
+                    </div>
+
+                    <!-- Sound Control -->
+                    <div class="section">
+                        <h3>🔊 Sound</h3>
+                        <label class="switch">
+                            <input type="checkbox" id="soundToggle" checked>
+                            <span class="slider-toggle"></span>
+                        </label>
+                        <span id="soundText">Sound ON</span>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="section buttons-section">
+                        <button onclick="resetToDefaults()" class="btn-secondary">Reset</button>
+                        <button onclick="clearAll()" class="btn-danger">Clear All</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Roulette Area -->
+            <div class="roulette-area">
+                <div class="wheel-container">
+                    <div class="pointer"></div>
+                    <canvas id="wheelCanvas" width="400" height="400"></canvas>
+                </div>
+
+                <div class="controls">
+                    <button id="spinBtn" onclick="spin()" class="btn-spin">
+                        <span class="spin-text">SPIN THE WHEEL!</span>
+                        <span class="spin-emoji">🎰</span>
+                    </button>
+                </div>
+
+                <!-- Result Display -->
+                <div id="resultDisplay" class="result-display hidden">
+                    <div class="result-content">
+                        <h2>🎉 WINNER! 🎉</h2>
+                        <p id="resultText"></p>
+                        <button onclick="closeResult()" class="btn-close">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confetti Container -->
+        <div id="confettiContainer" class="confetti-container"></div>
+
+        <!-- Sound Elements (hidden) -->
+        <audio id="spinSound" preload="auto"></audio>
+        <audio id="stopSound" preload="auto"></audio>
+        <audio id="clickSound" preload="auto"></audio>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
